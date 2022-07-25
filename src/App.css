@@ -8,14 +8,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(208, 209, 210);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .box {
@@ -23,11 +23,65 @@
   width: 25px;
   margin: 1px;
   border-radius: 50%;
-
+  background-color: white;
+  display: flex;
+}
+.boxAppBar {
+  height: 25px;
+  width: 25px;
+  margin: 1px;
+  border-radius: 50%;
   background-color: white;
   display: flex;
 }
 
-.container {
+.containers {
   display: inline-block;
+}
+.containersSlide {
+  display: inline-flex;
+}
+.colWheel {
+  margin: 25%;
+}
+
+.boxColors {
+  width: 200px;
+  height: 200px;
+  margin: 1px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  margin-top: 100px;
+}
+
+.lol {
+  width: 100%;
+  background-color: black;
+}
+
+.Banner-Row {
+  width: 100vw;
+}
+.circleText {
+  margin: auto;
+  text-align: center;
+}
+
+.bottomNav {
+  bottom: 0;
+  position: sticky;
+  background: blue;
+}
+
+.middleContent {
+  margin-top: 15vh;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+}
+
+.pickerStart {
+  display: flex;
+  align-items: center;
 }

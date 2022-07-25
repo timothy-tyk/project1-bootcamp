@@ -1,6 +1,9 @@
 import Wheel from "@uiw/react-color-wheel";
 import React, { useState } from "react";
 import { HsvaColor, ColorResult } from "@uiw/color-convert";
+import { AppBar, Toolbar, Grid, Typography, Box, Paper } from "@mui/material";
+import Colorslide from "./Colorslide";
+
 var colorsys = require("colorsys");
 
 export default class Colourwheel extends React.Component {
@@ -56,17 +59,39 @@ export default class Colourwheel extends React.Component {
       v: this.state.color.v,
     });
     //console.log(this.state.colorHex);
-    const styles = { background: hexValue, color: hexValue };
+    const styles = {
+      background: hexValue,
+      color: hexValue,
+      marginLeft: 50,
+      marginRight: 50,
+    };
+
     return (
       <div>
-        <Wheel color={this.state.color} onChange={this.changeColor} />
-        <input
+        <Wheel
+          className="colWheel"
+          color={this.state.color}
+          onChange={this.changeColor}
+        />
+        {/* <input
           type="submit"
           onClick={() => this.props.addNewCol(this.state.colorHex)}
           value="+"
-        />
+        /> */}
+        <Box cursor="pointer">
+          <Typography
+            variant="overline"
+            component="div"
+            align="center"
+            fontSize={16}
+            sx={{ flexGrow: 1 }}
+            onClick={() => this.props.addNewCol(this.state.colorHex)}
+          >
+            +
+          </Typography>
+        </Box>
         <div style={styles}>
-          <p>Hello World, Again</p>
+          <p>Hello World</p>
         </div>
       </div>
     );

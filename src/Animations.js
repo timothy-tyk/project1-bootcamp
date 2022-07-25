@@ -25,6 +25,13 @@ export default class Animations extends React.Component {
     this.myRef = React.createRef(null);
     this.state = { color: this.props.colors[0][0], colorCount: 0 };
   }
+  startAnimation = (animationRef) => {
+    if (!this.props.start) {
+      animationRef.pause();
+    } else {
+      animationRef.play();
+    }
+  };
 
   animationEffect = () => {
     console.log("animation effect");
@@ -70,6 +77,7 @@ export default class Animations extends React.Component {
   };
 
   componentDidMount() {
+    this.animationEffect();
     this.timerId = setInterval(() => {
       this.updateColorCount();
       this.updateColor();
@@ -90,12 +98,12 @@ export default class Animations extends React.Component {
     }
 
     for (let i = 0; i < this.props.cols; i++) {
-      gridLayout.push(<div className="container">{gridRows}</div>);
+      gridLayout.push(<div className="containers">{gridRows}</div>);
     }
 
     return (
       <div className="App">
-        <button onClick={this.animationEffect}>Start</button>
+        {/* <button onClick={this.animationEffect}>Start</button> */}
         <br />
         <br />
         <div className="overall-container">{gridLayout}</div>
