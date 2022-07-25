@@ -17,3 +17,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.box {
+  height: 25px;
+  width: 25px;
+  margin: 1px;
+  border-radius: 50%;
+
+  background-color: white;
+  display: flex;
+}
+
+.container {
+  display: inline-block;
+}

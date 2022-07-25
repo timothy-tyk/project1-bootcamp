@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@uiw/react-color-wheel": "^1.0.12",
+    "animejs": "^3.2.1",
+    "colorsys": "^1.0.22",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1"
