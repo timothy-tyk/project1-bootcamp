@@ -1,5 +1,6 @@
 import anime from "animejs/lib/anime.es.js";
 import React from "react";
+import { Typography } from "@mui/material";
 
 export default class Colorslide extends React.Component {
   constructor(props) {
@@ -31,6 +32,9 @@ export default class Colorslide extends React.Component {
       circleRow.push(
         <div className="boxColors" style={{ background: this.props.colors[i] }}>
           <p className="circleText">{i + 1}</p>
+          {/* <Typography variant="overline" display="inline-block">
+            {this.props.colors[i]}
+          </Typography> */}
         </div>
       );
     }

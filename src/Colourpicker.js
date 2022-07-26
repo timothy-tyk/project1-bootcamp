@@ -72,6 +72,8 @@ export default class Colourwheel extends React.Component {
           className="colWheel"
           color={this.state.color}
           onChange={this.changeColor}
+          height={300}
+          width={300}
         />
         {/* <input
           type="submit"
