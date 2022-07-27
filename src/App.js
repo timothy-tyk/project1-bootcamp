@@ -3,11 +3,12 @@ import logo from "./logo.png";
 import "./App.css";
 import Colourpicker from "./Colourpicker";
 import Animations from "./Animations";
+import Animations2 from "./Animation2";
 import Title from "./Title";
 import { Dimensions } from "react-native";
 import SpotifyPlayer from "./SpotifyPlayer";
-
 import {
+  Box,
   AppBar,
   Toolbar,
   Grid,
@@ -16,8 +17,11 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Button,
+  TextField,
+  InputLabel,
 } from "@mui/material";
 import Colorslide from "./Colorslide";
+import { margin } from "@mui/system";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +31,8 @@ class App extends React.Component {
       colors: [],
       showAnimation: false,
       startAnimation: false,
-      pauseAnimation: false,
+      defaultAnimation: true,
+      url: "",
     };
   }
   showColourPicker = () => {
@@ -48,8 +53,15 @@ class App extends React.Component {
     });
   };
 
-  pauseAnimation = () => {
-    this.setState({ pauseAnimation: !this.state.pauseAnimation });
+  changeAnimation = () => {
+    this.setState({ defaultAnimation: !this.state.defaultAnimation });
+  };
+
+  playlistUrl = (e) => {
+    let urlinput = e.target.value;
+    urlinput = urlinput.replace("https://open.spotify.com/playlist/", "");
+    console.log(urlinput);
+    this.setState({ url: urlinput });
   };
 
   render() {
@@ -92,35 +104,41 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
           <div className="middleContent">
-            {this.state.colourpicker && !this.state.showAnimation ? (
-              <div className="middleRow">
-                <Grid container spacing={2}>
-                  <Grid item xs={4}>
-                    <Colourpicker addNewCol={this.addColor} />
+            {
+              this.state.colourpicker && !this.state.showAnimation ? (
+                <div className="middleRow">
+                  <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                      <Colourpicker addNewCol={this.addColor} />
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Colorslide colors={this.state.colors} />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={8}>
-                    <Colorslide colors={this.state.colors} />
-                  </Grid>
-                </Grid>
-              </div>
-            ) : (
-              // <input
-              //   type="submit"
-              //   onClick={this.showColourPicker}
-              //   value="Start"
-              //   hidden={this.state.showAnimation}
-              // />
-              <Title />
-            )}
-            {!this.state.showAnimation ? null : (
+                </div>
+              ) : (
+                <input
+                  type="submit"
+                  onClick={this.showColourPicker}
+                  value="Start"
+                  hidden={this.state.showAnimation}
+                />
+              )
+              // <Title onClick={this.showColourPicker} />
+            }
+            {!this.state.showAnimation ? null : this.state.defaultAnimation ? (
               <Animations
-                rows={(0.8 * windowHeight) / 50} //18
-                cols={(0.9 * windowWidth) / 50} //23
-                //rows={10}
-                //cols={25}
+                rows={(0.8 * windowHeight) / 50}
+                cols={(0.9 * windowWidth) / 50}
                 colors={[this.state.colors]}
                 start={this.state.startAnimation}
-                pause={this.state.pauseAnimation}
+              />
+            ) : (
+              <Animations2
+                rows={(0.8 * windowHeight) / 50}
+                cols={(0.9 * windowWidth) / 50}
+                colors={[this.state.colors]}
+                start={this.state.startAnimation}
               />
             )}
           </div>
@@ -130,34 +148,62 @@ class App extends React.Component {
               className="bottomNav"
               sx={{ height: 80, background: "#090909", bottom: 0 }}
             >
-              {" "}
-              {this.state.colourpicker ? (
-                <Typography
-                  hidden={this.state.colourpicker}
-                  variant="overline"
-                  component="div"
-                  align="left"
-                  fontSize={16}
-                  margin="2vw"
-                  sx={{ flexGrow: 1 }}
-                  className="instructions"
-                  textAlign={"center"}
+              {/* {!this.state.colourpicker ? (
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
                 >
-                  SELECT COLORS
-                </Typography>
-              ) : null}
+                  <TextField
+                    id="standard-basic"
+                    label="Standard"
+                    variant="standard"
+                  />
+                </Box>
+              ) : null} */}
               <div className="spotifyplayer">
-                {this.state.startAnimation ? <SpotifyPlayer /> : null}
+                {this.state.startAnimation ? (
+                  <SpotifyPlayer url={this.state.url} />
+                ) : (
+                  <form>
+                    <Box
+                      component="form"
+                      sx={{
+                        "& > :not(style)": { m: 1 },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField
+                        className="textfield"
+                        style={{ color: "white" }}
+                        id="standard-basic"
+                        label="Spotify Playlist URL (Starts With: https://open.spotify.com/playlist/)"
+                        variant="standard"
+                        size="small"
+                        sx={{
+                          input: {
+                            color: "white",
+                            borderBottom: "solid white 1px",
+                          },
+                          label: { color: "white" },
+                        }}
+                        onChange={this.playlistUrl}
+                      />
+                    </Box>
+                  </form>
+                )}
               </div>
               <Button
                 // margin={"auto"}
                 margin={"2vw"}
                 disabled={!this.state.showAnimation}
-                onClick={this.pauseAnimation}
+                onClick={this.changeAnimation}
               >
-                {this.state.startAnimation && this.state.showAnimation
-                  ? "PAUSE"
-                  : "START"}
+                CHANGE ANIMATION
               </Button>
               <Button
                 disabled={this.state.colors.length < 1}

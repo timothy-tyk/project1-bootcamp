@@ -26,6 +26,14 @@
   background-color: white;
   display: flex;
 }
+.box2 {
+  height: 50px;
+  width: 50px;
+  margin: 1px;
+  display: flex;
+  background-color: white;
+}
+
 .boxAppBar {
   height: 25px;
   width: 25px;
@@ -84,7 +92,7 @@
   display: flex;
   width: 85vw;
   border-radius: 12px;
-  margin-left: 0;
+  margin-left: 1vw;
   margin-right: auto;
 }
 .instructions {
@@ -101,4 +109,10 @@
   border-radius: 50%;
   background-color: grey;
   cursor: pointer;
+}
+
+.textfield {
+  width: 60vw;
+  margin: auto;
+  color: white;
 }

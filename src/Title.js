@@ -7,6 +7,7 @@ export default class Title extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef(null);
+    this.textRef = React.createRef(null);
   }
 
   animationEffect = () => {
@@ -31,7 +32,11 @@ export default class Title extends React.Component {
       },
       direction: "alternate",
     });
-    let animationRefText = anime({
+  };
+
+  animationEffectText = () => {
+    let animationRefText = this.textRef.current;
+    animationRefText = anime({
       targets: ".title-text",
       opacity: [0, 1],
       easing: "linear",
@@ -40,6 +45,7 @@ export default class Title extends React.Component {
 
   startProgram = () => {
     this.animationEffect();
+    this.animationEffectText();
   };
 
   render() {
