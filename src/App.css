@@ -48,6 +48,7 @@
 }
 .containersSlide {
   display: inline-flex;
+  padding-top: 10vh;
 }
 .colWheel {
   align-items: center;
@@ -101,18 +102,35 @@
 }
 .title-wrapper {
   width: 80vw;
-  align-items: left;
+  margin: auto;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
 }
 .title {
-  height: 100px;
-  width: 100px;
+  height: 40vw;
+  width: 40vw;
   border-radius: 50%;
-  background-color: grey;
+  border: solid 0.5px white;
   cursor: pointer;
+  margin: auto;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
 }
 
 .textfield {
   width: 60vw;
   margin: auto;
   color: white;
+}
+
+.title-text {
+  display: inline-block;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
 }

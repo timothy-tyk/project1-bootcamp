@@ -1,7 +1,15 @@
 import Wheel from "@uiw/react-color-wheel";
 import React, { useState } from "react";
 import { HsvaColor, ColorResult } from "@uiw/color-convert";
-import { AppBar, Toolbar, Grid, Typography, Box, Paper } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Grid,
+  Typography,
+  Box,
+  Paper,
+  Button,
+} from "@mui/material";
 import Colorslide from "./Colorslide";
 
 var colorsys = require("colorsys");
@@ -67,7 +75,16 @@ export default class Colourwheel extends React.Component {
     };
 
     return (
-      <div>
+      <div
+        style={{
+          marginTop: "3vw",
+          marginBottom: "6vw",
+        }}
+      >
+        <Typography variant="overline" fontSize={24} color="white">
+          Select 4 Colors
+        </Typography>
+        <br />
         <Wheel
           className="colWheel"
           color={this.state.color}
@@ -75,25 +92,51 @@ export default class Colourwheel extends React.Component {
           height={300}
           width={300}
         />
+        <br />
         {/* <input
           type="submit"
           onClick={() => this.props.addNewCol(this.state.colorHex)}
           value="+"
         /> */}
-        <Box cursor="pointer">
+
+        <Button
+          variant="outlined"
+          type="submit"
+          onClick={() => this.props.addNewCol(this.state.colorHex)}
+          sx={{
+            color: "white",
+            border: "0px",
+            borderRadius: "15px",
+            "&.MuiButtonBase-root:hover": {
+              border: "0px",
+              background: "transparent",
+            },
+          }}
+        >
           <Typography
+            variant="overline"
+            fontSize={36}
+            sx={{ margin: "0px 50px" }}
+          >
+            +
+          </Typography>
+        </Button>
+        {/* <Typography
             variant="overline"
             component="div"
             align="center"
-            fontSize={16}
+            fontSize={36}
+            color="white"
             sx={{ flexGrow: 1 }}
             onClick={() => this.props.addNewCol(this.state.colorHex)}
           >
             +
-          </Typography>
-        </Box>
+          </Typography> */}
+
         <div style={styles}>
-          <p>Hello World</p>
+          <Typography variant="overline" fontSize={16} sx={{ color: "white" }}>
+            {this.state.colorHex}
+          </Typography>
         </div>
       </div>
     );

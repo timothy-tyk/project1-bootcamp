@@ -13,30 +13,116 @@ export default class Animations2 extends React.Component {
 
   animationEffect = () => {
     let animationRef = this.myRef.current;
-    animationRef = anime({
-      targets: ".overall-container .box2",
-      stranslateX: anime.stagger(10, {
-        grid: [this.props.rows, this.props.cols],
-        from: anime.random(0, this.props.rows * this.props.cols),
-        axis: "x",
-      }),
-      translateY: anime.stagger(10, {
-        grid: [this.props.rows, this.props.cols],
-        from: anime.random(0, this.props.rows * this.props.cols),
-        axis: "y",
-      }),
-      rotateZ: anime.stagger([0, 150], {
-        grid: [this.props.rows, this.props.cols],
-        from: anime.random(0, this.props.rows * this.props.cols),
-        axis: "x",
-      }),
-      delay: anime.stagger(200, {
-        grid: [this.props.rows, this.props.cols],
-        from: anime.random(0, this.props.rows * this.props.cols),
-        //from: "center",
-      }),
-      easing: "easeInOutQuad",
-    });
+    // animationRef = anime({
+    //   targets: ".overall-container .box2",
+    //   stranslateX: anime.stagger(10, {
+    //     grid: [this.props.rows, this.props.cols],
+    //     from: anime.random(0, this.props.rows * this.props.cols),
+    //     axis: "x",
+    //   }),
+    //   translateY: anime.stagger(10, {
+    //     grid: [this.props.rows, this.props.cols],
+    //     from: anime.random(0, this.props.rows * this.props.cols),
+    //     axis: "y",
+    //   }),
+    //   rotateZ: anime.stagger([0, 150], {
+    //     grid: [this.props.rows, this.props.cols],
+    //     from: anime.random(0, this.props.rows * this.props.cols),
+    //     axis: "x",
+    //   }),
+    //   delay: anime.stagger(200, {
+    //     grid: [this.props.rows, this.props.cols],
+    //     from: anime.random(0, this.props.rows * this.props.cols),
+    //     //from: "center",
+    //   }),
+    //   easing: "easeInOutQuad",
+    // });
+    let grid = [this.props.cols, this.props.rows];
+    animationRef = anime
+      .timeline({
+        targets: ".overall-container .box2",
+        easing: "easeInOutSine",
+        delay: anime.stagger(50),
+        loop: true,
+        autoplay: false,
+      })
+      .add({
+        translateX: [
+          {
+            value: anime.stagger("-.1rem", {
+              grid: grid,
+              from: "center",
+              axis: "x",
+            }),
+          },
+          {
+            value: anime.stagger(".1rem", {
+              grid: grid,
+              from: "center",
+              axis: "x",
+            }),
+          },
+        ],
+        translateY: [
+          {
+            value: anime.stagger("-.1rem", {
+              grid: grid,
+              from: "center",
+              axis: "y",
+            }),
+          },
+          {
+            value: anime.stagger(".1rem", {
+              grid: grid,
+              from: "center",
+              axis: "y",
+            }),
+          },
+        ],
+        duration: 1000,
+        scale: 0.5,
+        delay: anime.stagger(100, { grid: grid, from: "center" }),
+      })
+      .add({
+        translateX: () => anime.random(-10, 10),
+        translateY: () => anime.random(-10, 10),
+        delay: anime.stagger(8, { from: "last" }),
+      })
+      .add({
+        translateX: anime.stagger(".25rem", {
+          grid: grid,
+          from: "center",
+          axis: "x",
+        }),
+        translateY: anime.stagger(".25rem", {
+          grid: grid,
+          from: "center",
+          axis: "y",
+        }),
+        rotate: 0,
+        scaleX: 2.5,
+        scaleY: 0.25,
+        delay: anime.stagger(4, { from: "center" }),
+      })
+      .add({
+        rotate: anime.stagger([90, 0], { grid: grid, from: "center" }),
+        delay: anime.stagger(50, { grid: grid, from: "center" }),
+      })
+      .add({
+        translateX: 0,
+        translateY: 0,
+        scale: 0.5,
+        scaleX: 1,
+        rotate: 180,
+        duration: 1000,
+        delay: anime.stagger(100, { grid: grid, from: "center" }),
+      })
+      .add({
+        scaleY: 1,
+        scale: 1,
+        delay: anime.stagger(20, { grid: grid, from: "center" }),
+      });
+    animationRef.play();
   };
 
   updateColorCount = () => {
@@ -60,8 +146,8 @@ export default class Animations2 extends React.Component {
     this.timerId = setInterval(() => {
       this.updateColorCount();
       this.updateColor();
-      this.animationEffect();
-    }, 5300);
+      // this.animationEffect();
+    }, 5000);
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.pause !== prevProps.pause) {

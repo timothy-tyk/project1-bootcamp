@@ -11,50 +11,37 @@ export default class Title extends React.Component {
   }
 
   animationEffect = () => {
-    const windowWidth = Dimensions.get("window").width;
     let animationRef = this.myRef.current;
     console.log("animating");
     animationRef = anime({
       targets: ".title",
-      translateX: {
-        value: windowWidth * 0.6, // 100px * 2.5 = '250px'
-        duration: 1000,
-      },
-      width: {
-        value: "-=80px", // 28 - 20 = '8px'
-        duration: 1800,
-        easing: "easeInOutSine",
-      },
       rotate: {
-        value: "+=2turn", // 0 + 2 = '2turn'
-        duration: 1800,
-        easing: "easeInOutSine",
+        value: "+=1turn", // 0 + 2 = '2turn'
+        duration: 5000,
+        easing: "linear",
       },
-      direction: "alternate",
+      loop: true,
+      autoplay: true,
     });
   };
 
-  animationEffectText = () => {
-    let animationRefText = this.textRef.current;
-    animationRefText = anime({
-      targets: ".title-text",
-      opacity: [0, 1],
-      easing: "linear",
-    });
-  };
+  componentDidMount() {
+    this.animationEffect();
+  }
 
   startProgram = () => {
-    this.animationEffect();
-    this.animationEffectText();
+    this.props.onChange();
   };
 
   render() {
     return (
       <div className="title-wrapper">
         <div className="title" onClick={this.startProgram}>
-          <Typography className="title-text" variant="overline" fontSize={48}>
-            Start Visuals
-          </Typography>
+          <div className="title-text">
+            <Typography variant="overline" fontSize={36}>
+              #letsjam
+            </Typography>
+          </div>
         </div>
       </div>
     );
