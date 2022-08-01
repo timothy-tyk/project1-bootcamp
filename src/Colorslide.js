@@ -1,12 +1,10 @@
 import anime from "animejs/lib/anime.es.js";
 import React from "react";
-import { Typography } from "@mui/material";
 
 export default class Colorslide extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef(null);
-    // this.state = { colors: [] };
   }
 
   animationEffect = () => {
@@ -25,16 +23,24 @@ export default class Colorslide extends React.Component {
     }
   }
 
+  deleteColor = (e) => {
+    let colorIndex = Number(e.target.innerText) - 1;
+    console.log(colorIndex);
+    this.props.onClick(colorIndex);
+  };
+
   render() {
     console.log(this.props.colors.length);
     let circleRow = [];
     for (let i = 0; i < this.props.colors.length; i++) {
       circleRow.push(
-        <div className="boxColors" style={{ background: this.props.colors[i] }}>
+        <div
+          className="boxColors"
+          style={{ background: this.props.colors[i] }}
+          onClick={this.deleteColor}
+          onPointerOver={<p>x</p>}
+        >
           <p className="circleText">{i + 1}</p>
-          {/* <Typography variant="overline" display="inline-block">
-            {this.props.colors[i]}
-          </Typography> */}
         </div>
       );
     }

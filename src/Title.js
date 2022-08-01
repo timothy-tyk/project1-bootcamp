@@ -1,7 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import anime from "animejs";
-import { Dimensions } from "react-native-web";
 
 export default class Title extends React.Component {
   constructor(props) {
@@ -38,7 +37,11 @@ export default class Title extends React.Component {
       <div className="title-wrapper">
         <div className="title" onClick={this.startProgram}>
           <div className="title-text">
-            <Typography variant="overline" fontSize={36}>
+            <Typography
+              variant="overline"
+              fontSize={48}
+              sx={{ fontFamily: "Liquid Pixel" }}
+            >
               #letsjam
             </Typography>
           </div>

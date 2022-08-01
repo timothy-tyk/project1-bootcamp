@@ -49,6 +49,13 @@ class App extends React.Component {
       this.setState({ colors: [...this.state.colors, color] });
   };
 
+  deleteColor = (colorIndex) => {
+    let colorArr = [...this.state.colors];
+
+    colorArr.splice(colorIndex, 1);
+    this.setState({ colors: colorArr });
+  };
+
   showAnimation = () => {
     this.setState({
       showAnimation: true,
@@ -97,7 +104,6 @@ class App extends React.Component {
     const theme = createTheme({
       typography: {
         fontFamily: [
-          "Liquid Pixel",
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
@@ -108,15 +114,16 @@ class App extends React.Component {
           '"Apple Color Emoji"',
           '"Segoe UI Emoji"',
           '"Segoe UI Symbol"',
+          "Liquid Pixel",
         ].join(","),
       },
-      overrides: {
-        MuiCssBaseline: {
-          "@global": {
-            "@font-face": [Liquidpixelfont],
-          },
-        },
-      },
+      // overrides: {
+      //   MuiCssBaseline: {
+      //     "@global": {
+      //       "@font-face": [Liquidpixelfont],
+      //     },
+      //   },
+      // },
     });
 
     return (
@@ -137,8 +144,8 @@ class App extends React.Component {
                   variant="overline"
                   component="div"
                   align="left"
-                  fontSize={16}
-                  sx={{ flexGrow: 1 }}
+                  fontSize={24}
+                  sx={{ flexGrow: 1, fontFamily: "Liquid Pixel" }}
                 >
                   Beat-Root
                 </Typography>
@@ -158,11 +165,17 @@ class App extends React.Component {
                           border: "0.5px solid white",
                         }}
                       >
-                        <Colourpicker addNewCol={this.addColor} />
+                        <Colourpicker
+                          addNewCol={this.addColor}
+                          colors={this.state.colors}
+                        />
                       </Card>
                     </Grid>
                     <Grid item xs={8}>
-                      <Colorslide colors={this.state.colors} />
+                      <Colorslide
+                        colors={this.state.colors}
+                        onClick={this.deleteColor}
+                      />
                     </Grid>
                   </Grid>
                 </div>
@@ -237,7 +250,12 @@ class App extends React.Component {
                   disabled={!this.state.showAnimation}
                   onClick={this.changeAnimation}
                 >
-                  <Typography color={"white"}>Change Animation</Typography>
+                  <Typography
+                    color={"white"}
+                    sx={{ fontFamily: "Liquid Pixel" }}
+                  >
+                    Change Animation
+                  </Typography>
                 </Button>
                 <Button
                   disabled={this.state.colors.length < 1}

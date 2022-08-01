@@ -121,58 +121,18 @@ export default class Colourwheel extends React.Component {
             +
           </Typography>
         </Button>
-        {/* <Typography
-            variant="overline"
-            component="div"
-            align="center"
-            fontSize={36}
-            color="white"
-            sx={{ flexGrow: 1 }}
-            onClick={() => this.props.addNewCol(this.state.colorHex)}
-          >
-            +
-          </Typography> */}
 
         <div style={styles}>
           <Typography variant="overline" fontSize={16} sx={{ color: "white" }}>
             {this.state.colorHex}
           </Typography>
         </div>
+        {this.props.colors.length > 0 ? (
+          <Typography variant="overline" fontSize={12} sx={{ color: "white" }}>
+            Click on Color to deselect
+          </Typography>
+        ) : null}
       </div>
     );
   }
 }
-
-// export interface PointerProps extends React.HTMLAttributes<HTMLDivElement> {
-//   prefixCls?: string;
-//   top?: string;
-//   left: string;
-//   color?: string;
-// }
-// export const Pointer: ({ className, color, left, top, style, prefixCls }: PointerProps) => JSX.Element;
-
-// export default class WheelProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'color'> {
-//   prefixCls?: string,
-//   color?: string | HsvaColor,
-//   width?: number,
-//   height?: number,
-//   radius?: React.CSSProperties['borderRadius'],
-//   /** Starting angle of the color wheel's hue gradient, measured in degrees. */
-//   angle?: number,
-//   /** Direction of the color wheel's hue gradient; either clockwise or anticlockwise. Default: `anticlockwise` */
-//   direction?: 'clockwise' | 'anticlockwise',
-//   pointer?: ({ prefixCls, left, top, color }: PointerProps) => JSX.Element;
-//   onChange?: (color: ColorResult) => void,
-// }
-
-// function Demo() {
-//   const [hsva, setHsva] = useState({ h: 0, s: 0, v: 68, a: 1 });
-//   return (
-//     <Wheel
-//       color={hsva}
-//       onChange={(color) => {
-//         setHsva({ ...hsva, ...color.hsva });
-//       }}
-//     />
-//   );
-// }

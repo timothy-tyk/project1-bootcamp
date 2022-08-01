@@ -71,7 +71,7 @@ export default class Animations extends React.Component {
       this.updateColorCount();
       this.updateColor();
       this.animationEffect();
-    }, 5300);
+    }, 7000);
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.pause !== prevProps.pause) {

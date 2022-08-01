@@ -13,30 +13,7 @@ export default class Animations2 extends React.Component {
 
   animationEffect = () => {
     let animationRef = this.myRef.current;
-    // animationRef = anime({
-    //   targets: ".overall-container .box2",
-    //   stranslateX: anime.stagger(10, {
-    //     grid: [this.props.rows, this.props.cols],
-    //     from: anime.random(0, this.props.rows * this.props.cols),
-    //     axis: "x",
-    //   }),
-    //   translateY: anime.stagger(10, {
-    //     grid: [this.props.rows, this.props.cols],
-    //     from: anime.random(0, this.props.rows * this.props.cols),
-    //     axis: "y",
-    //   }),
-    //   rotateZ: anime.stagger([0, 150], {
-    //     grid: [this.props.rows, this.props.cols],
-    //     from: anime.random(0, this.props.rows * this.props.cols),
-    //     axis: "x",
-    //   }),
-    //   delay: anime.stagger(200, {
-    //     grid: [this.props.rows, this.props.cols],
-    //     from: anime.random(0, this.props.rows * this.props.cols),
-    //     //from: "center",
-    //   }),
-    //   easing: "easeInOutQuad",
-    // });
+
     let grid = [this.props.cols, this.props.rows];
     animationRef = anime
       .timeline({
@@ -146,7 +123,6 @@ export default class Animations2 extends React.Component {
     this.timerId = setInterval(() => {
       this.updateColorCount();
       this.updateColor();
-      // this.animationEffect();
     }, 5000);
   }
   componentDidUpdate(prevProps, prevState) {
